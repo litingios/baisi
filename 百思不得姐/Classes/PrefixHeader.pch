@@ -1,0 +1,80 @@
+//
+//  PrefixHeader.pch
+//  百思不得解
+//
+//  Created by 李霆 on 2018/9/12.
+//  Copyright © 2018年 李霆. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+/***** 在#ifdef __OBJC__和#endif之间的内容, 只会拷贝到OC源代码文件中, 不会拷贝到其他语言的源代码文件中 *****/
+#ifdef __OBJC__
+
+#import "UIView+LTExtanslon.h"
+#import "UIBarButtonItem+LTExtension.h"
+#import "LTControl.h"
+#import "LTCustomBtn.h"
+#import "LTConst.h"
+#import "Https.h"
+#import "NSString+LTExtension.h"
+#import "NSCalendar+LTExtension.h"
+#import "NSDate+LTExtension.h"
+#import "LTTRefreshHeader.h"
+#import "LTRefreshFooter.h"
+#import "LTPlayVideoDetalVC.h"
+#import "JQFMDB.h"//数据库操作
+#import "CXAlert.h"
+
+#import "AFNetworking.h"
+#import "UIImageView+WebCache.h"
+#import "UIImage+GIF.h"
+#import "MJExtension.h"
+#import "SVProgressHUD.h"
+#import "MJRefresh.h"
+
+/*** 日志 ***/
+#ifdef DEBUG
+#define LTLog(...) NSLog(__VA_ARGS__)
+#else
+#define LTLog(...)
+#endif
+
+#define LTLogFunc LTLog(@"%s", __func__);
+
+/*** 字号 ****/
+#define FONT(x) [UIFont systemFontOfSize:x]
+
+/*** 设置圆角 ****/
+#define LRViewBorderRadius(View, Radius, Width, Color)\
+\
+[View.layer setCornerRadius:(Radius)];\
+[View.layer setMasksToBounds:YES];\
+[View.layer setBorderWidth:(Width)];\
+[View.layer setBorderColor:[Color CGColor]]
+
+/*** 屏幕相关 ****/
+#define iPhone_Width    [[UIScreen mainScreen] bounds].size.width
+#define iPhone_Height   [[UIScreen mainScreen] bounds].size.height
+#define iPhoneX ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1125, 2436), [[UIScreen mainScreen] currentMode].size) : NO)
+#define kheight (iPhoneX ? ([UIScreen mainScreen].bounds.size.height)-58 : ([UIScreen mainScreen].bounds.size.height))
+#define WidthScale (iPhone_Width/750.0)
+#define HeightScale (iPhone_Height == 812.0 ? 667.0/1334.0 : kheight/1334.0)//667
+
+/*** 颜色 ***/
+#define LTColorA(r, g, b, a) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:(a)/255.0]
+#define LTRGB(r,g,b) [UIColor colorWithRed:r/255.f green:g/255.f blue:b/255.f alpha:1.f]
+#define LTColor(r, g, b) LTColorA((r), (g), (b), 255)
+#define LTRandomColor LTColor(arc4random_uniform(255), arc4random_uniform(255), arc4random_uniform(255))
+#define LTrayColor(v) LTColor((v), (v), (v))
+#define LTBgColor LTrayColor(206)
+#define LTCommonBgColor LTRGB(238,238,238)
+#define LTBlackColor [UIColor colorWithRed:51.0/255.0 green:51.0/255.0 blue:51.0/255.0 alpha:1.0]
+#define IMAGE(x) [UIImage imageNamed:x]
+#define URL(x) [NSURL URLWithString:x]
+
+#endif
+/***** 在#ifdef __OBJC__和#endif之间的内容, 只会拷贝到OC源代码文件中, 不会拷贝到其他语言的源代码文件中 *****/
+
+#endif /* PrefixHeader_pch */
